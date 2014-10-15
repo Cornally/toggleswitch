@@ -1,4 +1,1 @@
-toggleswitch
-============
-
-Convert &lt;select> tags into toggle switches.
+For examples and API documentation, see http://cornally.github.io/toggleswitch/
