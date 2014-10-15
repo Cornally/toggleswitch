@@ -1,0 +1,189 @@
+// Most of the mixins are in here for the sake of cross-browser compatibility
+// back to IE8.  As tags are deprecated and official support changes, clear out
+// the browser prefixes.
+
+// Cross-browser Box sizing
+@mixin box-sizing($type : border-box) {
+	-webkit-box-sizing: $type;
+		 -moz-box-sizing: $type;
+					box-sizing: $type;
+}
+
+// Cross-browser Perspective
+@mixin perspective ($value: 1000) {
+	-webkit-perspective: $value;
+		 -moz-perspective: $value;
+			 ms-perspective: $value;
+					perspective: $value;
+}
+
+// Cross-browser Opacity
+@mixin opacity($alpha : 1) {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity='" +  $alpha*100 + "')";
+		-khtml-opacity: $alpha;
+		-moz-opacity: $alpha;
+		opacity: $alpha;
+}
+
+// Text overflow ellipsis
+@mixin text-overflow() {
+		text-overflow:ellipsis;
+		overflow:hidden;
+		white-space:nowrap;
+}
+
+// Cross-browser Box Shadows
+@mixin box-shadow( 
+	$x : 2px, 
+	$y : 2px, 
+	$blur : 5px, 
+	$spread : 0, 
+	$color : rgba(0,0,0,.6) 
+) {
+	-webkit-box-shadow: $x $y $blur $spread $color;
+		 -moz-box-shadow: $x $y $blur $spread $color;
+		box-shadow: $x $y $blur $spread $color;	
+}
+
+// Cross-browser Inset Box Shadows
+@mixin inset-shadow( 
+	$x : 2px, 
+	$y : 2px, 
+	$blur : 5px, 
+	$spread : 0, 
+	$color : rgba(0,0,0,.6) 
+) {
+	-webkit-box-shadow: inset $x $y $blur $spread $color;
+		 -moz-box-shadow: inset $x $y $blur $spread $color;
+		box-shadow: inset $x $y $blur $spread $color;	
+}
+
+// Cross-browser Tranform
+@mixin transform($params) {
+	-webkit-transform: $params;
+			 -moz-transform: $params;
+			-ms-transform: $params;
+			 -o-transform: $params;
+						transform: $params;
+}
+
+// Cross-browser Transition
+@mixin transition(
+	$what : all,
+	$length : 1s,
+	$easing : linear,
+	$delay : 0s
+) {
+	-webkit-transition: $what $length $easing $delay;
+		 -moz-transition: $what $length $easing $delay;
+			 -o-transition: $what $length $easing $delay;
+					transition: $what $length $easing $delay;			
+}
+
+// Cross-browser Selection States (Modern browsers and IE10+)
+@mixin no-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin text-select {
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+// Cross-browser Gradients
+@mixin linear-gradient( 
+	$start: black, 
+	$end: white,
+	$switch : 100%
+) {
+	background:  $end;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from($start), color-stop($switch, $end));
+	background: -moz-linear-gradient(top, $start, $end $switch);
+	background: -ms-linear-gradient(top, $start, $end $switch);
+	background: -o-linear-gradient(top, $start, $end $switch);
+	background: linear-gradient(top, $start, $end $switch);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + $start + "', EndColorStr='" + $end + "', GradientType=0)";
+}
+
+// Cross-browser Border Radius - Used to keep rounded corner values consistent
+// In some cases, you'll want to round just the top, side or bottom corners of
+// an element (e.g. dashboard tab, quickjumps toggle button, fixed position buttons),
+// use the shortcuts below to accomplish this task.
+@mixin border-radius($radius: 3px) {
+	-webkit-border-radius: $radius;
+		 -moz-border-radius: $radius;
+					border-radius: $radius;		
+}
+
+@mixin border-radius-top ($radius: 3px) {
+	-webkit-border-top-right-radius: $radius;
+	-webkit-border-top-left-radius: $radius;
+		 -moz-border-top-right-radius: $radius;
+		 -moz-border-top-left-radius: $radius;
+			border-top-right-radius: $radius;
+		border-top-left-radius: $radius;
+}
+
+@mixin border-radius-bottom ($radius: 3px) {
+	-webkit-border-bottom-right-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+		 -moz-border-bottom-right-radius: $radius;
+		 -moz-border-bottom-left-radius: $radius;
+			border-bottom-right-radius: $radius;
+		border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius-left ($radius: 3px) {
+	-webkit-border-top-left-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+		 -moz-border-top-left-radius: $radius;
+		 -moz-border-bottom-left-radius: $radius;
+			border-top-left-radius: $radius;
+		border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius-right ($radius: 3px) {
+	-webkit-border-top-right-radius: $radius;
+	-webkit-border-bottom-right-radius: $radius;
+		 -moz-border-top-right-radius: $radius;
+		 -moz-border-bottom-right-radius: $radius;
+			border-top-right-radius: $radius;
+		border-bottom-right-radius: $radius;
+}
+
+// Cross-browser Background Size
+@mixin background-size ($x-bg-size: 800px, $y-bg-size: 150px) {
+			 -webkit-background-size: $x-bg-size $y-bg-size;
+				-moz-background-size: $x-bg-size $y-bg-size;
+							-o-background-size: $x-bg-size $y-bg-size;
+								 background-size: $x-bg-size $y-bg-size;
+}
+
+// "Placeholder" styling
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+// Sprites
+// Pass in your sprite's location, the desired size of the div, background position, background repetitions and cursor behavior.
+// Values not passed into the mixin will receive the default specified values.
+@mixin sprite ($url, $x-size:auto, $y-size:auto, $x-bg-size:left, $y-bg-size:top, $bg-repeat : no-repeat,  $cursor:pointer) {
+	background: url($url);
+	background-repeat: $bg-repeat;
+	width: $x-size;
+	height: $y-size;
+	text-indent: -9999px;
+	cursor: $cursor;
+	@include background-size($x-bg-size, $y-bg-size);
+}

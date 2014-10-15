@@ -1,0 +1,168 @@
+@import "mlb-mixins.scss";
+
+// Variables
+// Color Key - Light Grays
+$g1: #f3f3f2;
+$g2: #e3e3e4;
+$g3: #cccccc;
+$g4: #b0b0b0;
+$g5: #797979;
+$g6: #666666;
+// Color Key - Dark Gray
+$g7: #444444;
+$g8: #343434;
+$g9: #242526;
+$g10: #181818;
+// Other Colors
+$on: #349441;
+$off: #ed173a;
+
+.toggleswitch-container {
+	
+    // Container Scaffolding
+	display: block;
+	width: 70px;
+    height: 26px;
+    border: 1px solid #ccc;
+	border-radius: 13px;
+    @include inset-shadow(0, 2px, 3px, 0, rgba(0,0,0,.25));
+    @include box-sizing;
+    @include linear-gradient($g8 , $g7);
+    @include no-select;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+	
+    // Switch Scaffolding
+    .toggleswitch-switch {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-radius: 13px;
+      @include linear-gradient($g1 , $g4);
+      
+      // Darken switch when active
+      &:active {
+        @include linear-gradient($g1/1.2 , $g4/1.2);
+      }
+      
+    }
+    
+    // Display Text
+    .toggleswitch-text {
+        height:24px;
+        line-height: 24px;
+        float: none;
+        overflow: hidden;
+        text-align: center;
+        font-size: 10px;
+        
+        //Text shadows are sweet, but it slows down performance slightly -- your call
+        text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  
+    // State - On
+    //
+    // Style your switch, display text and the container background color to
+    // indiciate state
+    
+		&.toggleswitch-state-on {
+        
+        @include linear-gradient($on , $on/1.2);
+        
+        .toggleswitch-switch {
+            float: right;
+            box-shadow:-3px 1px 2px 0 rgba(0,0,0,.25) , inset 0 -1px 1px 0 rgba(255,255,255,.75);
+        }
+        
+        .toggleswitch-text {
+            color: $g1;
+        }
+				
+		}
+    
+    // State - Off
+    //
+    // Style your switch, display text and the container background color to
+    // indiciate state
+		&.toggleswitch-state-off {
+        
+				.toggleswitch-switch {
+            float: left;
+            box-shadow:3px 1px 2px 0 rgba(0,0,0,.25) , inset 0 -1px 1px 0 rgba(255,255,255,.75);
+        }
+        
+        .toggleswitch-text {
+            color: $g4;
+        }
+        
+		}
+    
+    // State - Drag in progress
+    &.toggleswitch-state-drag.toggleswitch-animate {
+        .toggleswitch-switch {
+            @include transition(all, 0s, linear);
+        }
+       .toggleswitch-text {
+            opacity: 0;
+        }
+    }
+    
+    // State - Disabled
+    &.toggleswitch-state-disabled {
+        cursor: default;
+        
+        @include linear-gradient($g5 , $g2);
+        
+        .toggleswitch-switch {
+            @include linear-gradient($g1*1.2 , $g4*1.2);
+        }
+       
+       .toggleswitch-text {
+            color: $g5;
+            text-shadow: 0 1px 1px #fff;
+        }
+    }
+    
+    // Feature - Animation - On
+    &.toggleswitch-animate {
+        
+        .toggleswitch-switch {
+            @include transition(all, 50ms, cubic-bezier(.30, .86, .54, 1) );
+            float: left;
+        }
+        
+        .toggleswitch-text {
+            @include transition(opacity, 50ms, linear);
+        }
+        
+        &.toggleswitch-state-off {
+            .toggleswitch-switch {
+               @include transform( translate3d(0, 0, 0) );
+            }
+            .toggleswitch-text {
+                @include transform( translate3d(0, 0, 0) );
+            }
+        }
+        
+        &.toggleswitch-state-on {
+            .toggleswitch-switch {
+                @include transform( translate3d(43px, 0, 0) );
+            }
+            .toggleswitch-text {
+                @include transform( translate3d(-24px, 0, 0) );
+            }
+        }
+        
+    }
+	
+}
+
+// Remove rounded corners in <= IE9
+html.lt-ie10, html.lte-ie9 {
+    .toggleswitch-container {
+        border-radius: 0;
+        .toggleswitch-switch {
+            border-radius: 0;
+        }
+    }
+}
