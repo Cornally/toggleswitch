@@ -4,7 +4,7 @@
  *
  * Dependencies: jQuery 1.7.1+, jQuery UI 1.8+, Modernizr ( csstransforms3d detection )
  * Version 1.0
- * Author chris.connelly@mlb.com
+ * Author @Cornally
  *
  *
  * Based On: jQuery UI Widget-factory plugin boilerplate (for 1.8/9+) by @addyosmani
