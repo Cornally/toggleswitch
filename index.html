@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>MLB Toggleswitch jQuery Plugin</title>
+    <link rel="icon" type="image/png" href="data:image/png;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AFgDL/xUAy/8WAMv/FgDL/xUAy/8WAMr/FgDL/xYAy/8VAMv/FgDL/xYAy/8WAMv/////AP///wD///8A////ABMAzv8VAM//FQDO/xQAz/8UAM7/FADP/xQAzv8UAM//FADO/xMAz/8VAM//EwDP/////wD///8A////AP///wASANP/EwDU/xIA0/8TANT/EgDT/xEA1P8SANP/EgDT/xIA0/8SANT/EwDT/xIA0/////8A////AP///wD///8AEADZ/xEA2P8QANj/EADY/xAA2P8RANn/EADZ/xAA2P8PANj/EADY/xEA2P8RANn/////AP///wD///8A////AA0A3v8OAN3/DgDd/w0A3f8OAN7/DgDe/w4A3v8OAN3/DgDe/w0A3f8OAN7/DQDe/////wD///8A////AP///wAMAOP/CwDk/wsA5P8LAOP/CwDj/wsA4/8MAOP/CwDj/wwA4/8MAOP/DADj/wsA4/////8A////AP///wD///8ACgDp/wkA6f8JAOn/CgDp/wkA6f8KAOn/CQDp/wkA6f8KAOn/CgDp/wkA6f8JAOn/////AP///wD///8A////AAcA7v8HAO//BwDu/wcA7v8GAO7/BwDu/wcA7v8HAO//BwDu/wcA7/8HAO7/BwDv/////wD///8A////AP///wAFAPT/BAD0/wUA8/8EAPP/BADz/wUA8/8EAPP/BQD0/wQA8/8FAPT/BQD0/wUA9P////8A////AP///wD///8AAwD4/wQA9/8DAPn/AwD5/wMA+f8EAPj/AwD4/wMA+f8DAPj/AwD5/wQA+P8DAPn/////AP///wD///8A////AAEA/P8BAPz/AQD8/wEA/P8BAPz/AQD8/wEA/P8BAPz/AQD8/wEA/P8BAPz/AQD8/////wD///8A////AP///wAAAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//////8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAAD//wAA//8AAA==" />
+    <style>
+        
+        .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+        
+        body { background: #e3e3e4; color: #000; font-family: "Helvetica", "Helvetica Neue", "Arial", san-serif; font-size: 12px; margin: 0; padding: 0; }
+        
+        header { border-bottom: 1px solid #ccc; background: #f3f3f2; padding: 28px; }
+        header ul { list-style: none; float: right; }
+        header ul li { float: left; padding: 0 14px; border-right: 1px solid #ccc; height: 20px; line-height: 20px; }
+        header ul li:last-child { border-right: 0; }
+        
+        #logo-box {
+            display: block;
+            float: left;
+            height: 24px;
+            width: 24px; margin: 9px 0;
+            background: red;
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff0000), color-stop(100%, #ea0000));
+            background: -moz-linear-gradient(top, #ff0000, #ea0000 100%);
+            background: -ms-linear-gradient(top, #ff0000, #ea0000 100%);
+            background: -o-linear-gradient(top, #ff0000, #ea0000 100%);
+            background: linear-gradient(top, #ff0000, #ea0000 100%);
+        }
+        
+        #download {
+            font-family: "Helvetica", "Helvetica Neue", "Arial", san-serif;
+            font-weight: 100;
+            font-size: 12px;
+            color: white;
+            cursor: pointer;
+            background: #242526;
+            border: 1px solid black;
+            padding: 10px 20px;
+            margin: 7px 0;
+            border: 0;
+            outline: none;
+        }
+        
+        #download:hover {
+            background: #282828;
+        }
+        
+        #download:active {
+            background: #333;
+        }
+        
+        h1 { float: left; padding: 0 14px; font-size: 30px; font-weight: 100; letter-spacing: -1px; line-height: 35px; margin: 4px 0; }
+        h2 { font-size: 16px; font-weight: 800; margin: 0 0 14px 0; padding-bottom: 7px; border-bottom: 1px solid #ccc; }
+        a { font-weight: 800; color: #000; }
+        
+        section { border: 1px solid #ccc; background: #fff; margin: 14px; padding: 28px; }
+        section p {margin: 14px 0;}
+        
+        .sample-toggleswitch { margin: 28px; }
+        
+        /*Code Styles*/
+        
+        /**
+        * prism.js default theme for JavaScript, CSS and HTML
+        * Based on dabblet (http://dabblet.com)
+        * @author Lea Verou
+        */
+       
+       code[class*="language-"],
+       pre[class*="language-"] {
+         color: black;
+         text-shadow: 0 1px white;
+         font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+         direction: ltr;
+         text-align: left;
+         white-space: pre;
+         word-spacing: normal;
+       
+         -moz-tab-size: 4;
+         -o-tab-size: 4;
+         tab-size: 4;
+       
+         -webkit-hyphens: none;
+         -moz-hyphens: none;
+         -ms-hyphens: none;
+         hyphens: none;
+       }
+       
+       pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+       code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+         text-shadow: none;
+         background: #b3d4fc;
+       }
+       
+       pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+       code[class*="language-"]::selection, code[class*="language-"] ::selection {
+         text-shadow: none;
+         background: #b3d4fc;
+       }
+       
+       @media print {
+         code[class*="language-"],
+         pre[class*="language-"] {
+           text-shadow: none;
+         }
+       }
+       
+       /* Code blocks */
+       pre[class*="language-"] {
+         padding: 1em;
+         margin: .5em ;
+         overflow: auto;
+       }
+       
+       :not(pre) > code[class*="language-"],
+       pre[class*="language-"] {
+         background: #f5f2f0;
+       }
+       
+       /* Inline code */
+       :not(pre) > code[class*="language-"] {
+         padding: .1em;
+         border-radius: .3em;
+       }
+       
+       .token.comment,
+       .token.prolog,
+       .token.doctype,
+       .token.cdata {
+         color: slategray;
+       }
+       
+       .token.punctuation {
+         color: #999;
+       }
+       
+       .namespace {
+         opacity: .7;
+       }
+       
+       .token.property,
+       .token.tag,
+       .token.boolean,
+       .token.number {
+         color: #905;
+       }
+       
+       .token.selector,
+       .token.attr-name,
+       .token.string {
+         color: #690;
+       }
+       
+       .token.operator,
+       .token.entity,
+       .token.url,
+       .language-css .token.string,
+       .style .token.string {
+         color: #a67f59;
+         background: hsla(0,0%,100%,.5);
+       }
+       
+       .token.atrule,
+       .token.attr-value,
+       .token.keyword {
+         color: #07a;
+       }
+       
+       
+       .token.regex,
+       .token.important {
+         color: #e90;
+       }
+       
+       .token.important {
+         font-weight: bold;
+       }
+       
+       .token.entity {
+         cursor: help;
+       }
+        
+        .pre-scrollable {
+            max-height: 340px;
+            overflow-y: scroll;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="mlb-toggleswitch.css">
+</head>
+
+<body>
+
+    <header class="clearfix">
+        <div id="logo-box"></div>
+        <h1>MLB Toggleswitch jQuery Plugin</h1>
+        <ul>
+            <li>Version 1.0</li>
+            <li>Last Updated 8/14/13</li>
+            <li><a href="http://www.twitter.com/@Cornally/">@Cornally</a></li>
+        </ul>
+    </header>
+    
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Run the plugin on a 'select' tag element with the structure below to convert it into a toggle switch.  Toggle switches are a familiar design pattern that can be useful to conserve space.</p>
+        <p>Version 1.0+ of the plugin requires <a href="http://jquery.com/download/" target="_new">jQuery 1.7+</a>, <a href="http://jqueryui.com/" target="_new">jQuery UI 1.8+</a> and <a href="http://modernizr.com/" target="_new">Modernizr</a> for feature detection of translate3d css transform support.</p>
+    </section>
+    
+    <section id="basic-usage">
+        <h2>Basic Usage</h2>
+        <h3>Libraries</h3>
+        
+        <pre><code class="language-markup">&lt;link type="text/css" rel="stylesheet" href="mlb-toggleswitch.css">
+&lt;script src="mlb-toggleswitch.js">&lt;/script></code></pre>
+        
+        <h3>HTML</h3>
+        <pre><code class="language-markup">&lt;select id="sample">
+    &lt;option value="off">Off&lt;/option>
+    &lt;option value="on">On&lt;/option>
+&lt;/select></code></pre>
+        
+        <h3>Javascript</h3>
+        <pre><code class="language-javascript">$('#sample').toggleswitch();</code></pre>
+        
+        <p>The original select element is hidden, but remains updated with the proper value as our toggleswitch state changes. It also receives the class 'toggleswitch-select' that can be useful for targeting the original element to access any of the methods below.
+        There's also a pseudo selector that can be used for accessing existing toggle switches.</p>
+        
+        <h3>Select all instances of the plugin with the ':mlb-toggleswitch' psuedo-selector</h3>
+        <pre><code class="language-javascript">$(':mlb-toggleswitch').toggleswitch('destroy');</code></pre>
+        
+    </section>
+    
+    <section id="optional-parameters">
+        <h2>Options</h2>
+        <p>Multiple options can be passed in when calling a new instance of a toggle switch.  Some options can be modified after instantiation.  Changing an option on an instantiated toggleswitch will fire off the private _setOption method.</p>
+        
+        <h3>bSwitchState</h3>
+        <p>Set the state of the toggle switch on creation</p>
+        <i>Default: false</i>
+        <pre><code class="language-javascript">$('select').toggleswitch( { 'bSwitchState' : false  } );</code></pre>
+        <div class="sample-toggleswitch" id="toggleswitch-1"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+        <h3>bSwitchEnabled</h3>
+        <p>Set the enabled/disabled attribute of the toggle switch on creation</p>
+        <i>Default: true</i>
+        <pre><code class="language-javascript">$('select').toggleswitch( { 'bSwitchEnabled' : false  } );</code></pre>
+        <div class="sample-toggleswitch" id="toggleswitch-2"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+        <h3>bDisplayText</h3>
+        <p>Enable or disable custom display text</p>
+        <i>Default: false</i>
+        <pre><code class="language-javascript">$('select').toggleswitch( { 'bDisplayText' : true  } );</code></pre>
+        <div class="sample-toggleswitch" id="toggleswitch-3"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+        <h3>asDisplayText</h3>
+        <p>Supply custom display text for the on/off states of the toggle (Up to 4 characters).  The "bDisplayText" option must be set to true for display text to be visible.</p>
+        <i>Default: "Off" , "On"</i>
+        <pre><code class="language-javascript">$('select').toggleswitch( { 'asDisplayText' : [ "Nay" , "Yay" ]  } );</code></pre>
+        <div class="sample-toggleswitch" id="toggleswitch-4"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+        <h3>bAnimate</h3>
+        <p>Turn animation on or off for modern browsers (CSS animation only -- no jQuery fallback right now).  bAnimate must be true for switch dragging functionality to work otherwise behavior degrades and does not animate ( < IE10 ).</p>
+        <i>Default: true</i>
+        <pre><code class="language-javascript">$('select').toggleswitch( { 'bAnimate' : false } );</code></pre>
+        <div class="sample-toggleswitch" id="toggleswitch-5"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+    </section>
+    
+    <section id="methods">
+        <h2>Methods</h2>
+        
+        <h3>changeToggle</h3>
+        <p>Toggle the value of a toggle switch back and forth or assign a value.  Passing a boolean through will assign a value.</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeToggle');</code></pre>
+        <p>False sets the switch to the "off" state</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeToggle' , false);</code></pre>
+        <p>True sets the switch to the "on" state</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeToggle' , true);</code></pre>
+        
+        <h3>changeEnabled</h3>
+        <p>Toggle the enabled/disabled attribute of a toggle switch back and forth or assign a value.</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeEnabled');</code></pre>
+        <p>False disables the toggle switch</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeEnabled' , false);</code></pre>
+        <p>True enables the toggle switch</p>
+        <pre><code class="language-javascript">$('select').toggleswitch('changeToggle' , true);</code></pre>
+        
+    </section>
+    
+    <section id="callbacks">
+        <h2>Callbacks</h2>
+        
+        <h3>toggleswitchchange</h3>
+        <p>This event is fired when a toggleswitch instance changes value.</p>
+        <pre><code class="language-javascript">$('select').on('toggleswitchchange' , function(){
+        
+    //Do stuff
+    alert('Do stuff');
+    
+});
+</code></pre>
+        
+        <div class="sample-toggleswitch" id="toggleswitch-6"><select><option value="off">Off</option><option value="on">On</option></select></div>
+        
+    </section>
+    
+    <section id="Styling">
+        <h2>Styling</h2>
+        <p>The toggle switch plugin's styles have been generated from a single <a href="http://www.sass-lang.com" target="_new">SASS</a> (mlb-toggleswitch.scss) file.</p>
+    </section>
+    
+    <section id="Change Log">
+        <h2>Future Enhancements</h2>
+        <ul>
+            
+        </ul>
+        <h2>Recent Fixes</h2>
+        <ul>
+            <li>Added support for touch events.  Modernizr is required.</li>
+            <li>Minor bug in IE11 when 'bAnimate' is set to true.  Dragging the switch to the "Off" position does not animate properly.</li>
+            <li>Moved structure around so '.toggleswitch-container' wraps the original select</li>
+            <li>Fixed callback so it only fires when the value changes…right now _setOption triggers the event even if the same option value is set.</li>
+            <li>IE Fixes … IE10 returns a slightly different matrix for "transform3d", write absolute position fallback</li>
+            <li>jQuery prefix handling added (cross-browser)</li>
+            <li>Added proper disabled state</li>
+            <li>Proper detection for IE10, removed $.browser dependency</li>
+        </ul>
+    </section>
+
+    <script>
+        /************************************************
+                Begin prism-core.js
+        ********************************************** */
+           
+           /**
+            * Prism: Lightweight, robust, elegant syntax highlighting
+            * MIT license http://www.opensource.org/licenses/mit-license.php/
+            * @author Lea Verou http://lea.verou.me
+            */
+           
+           (function(){
+           
+           // Private helper vars
+           var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+           
+           var _ = self.Prism = {
+             util: {
+               type: function (o) { 
+                 return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+               },
+               
+               // Deep clone a language definition (e.g. to extend it)
+               clone: function (o) {
+                 var type = _.util.type(o);
+           
+                 switch (type) {
+                   case 'Object':
+                     var clone = {};
+                     
+                     for (var key in o) {
+                       if (o.hasOwnProperty(key)) {
+                         clone[key] = _.util.clone(o[key]);
+                       }
+                     }
+                     
+                     return clone;
+                     
+                   case 'Array':
+                     return o.slice();
+                 }
+                 
+                 return o;
+               }
+             },
+             
+             languages: {
+               extend: function (id, redef) {
+                 var lang = _.util.clone(_.languages[id]);
+                 
+                 for (var key in redef) {
+                   lang[key] = redef[key];
+                 }
+                 
+                 return lang;
+               },
+               
+               // Insert a token before another token in a language literal
+               insertBefore: function (inside, before, insert, root) {
+                 root = root || _.languages;
+                 var grammar = root[inside];
+                 var ret = {};
+                   
+                 for (var token in grammar) {
+                 
+                   if (grammar.hasOwnProperty(token)) {
+                     
+                     if (token == before) {
+                     
+                       for (var newToken in insert) {
+                       
+                         if (insert.hasOwnProperty(newToken)) {
+                           ret[newToken] = insert[newToken];
+                         }
+                       }
+                     }
+                     
+                     ret[token] = grammar[token];
+                   }
+                 }
+                 
+                 return root[inside] = ret;
+               },
+               
+               // Traverse a language definition with Depth First Search
+               DFS: function(o, callback) {
+                 for (var i in o) {
+                   callback.call(o, i, o[i]);
+                   
+                   if (_.util.type(o) === 'Object') {
+                     _.languages.DFS(o[i], callback);
+                   }
+                 }
+               }
+             },
+           
+             highlightAll: function(async, callback) {
+               var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
+           
+               for (var i=0, element; element = elements[i++];) {
+                 _.highlightElement(element, async === true, callback);
+               }
+             },
+               
+             highlightElement: function(element, async, callback) {
+               // Find language
+               var language, grammar, parent = element;
+               
+               while (parent && !lang.test(parent.className)) {
+                 parent = parent.parentNode;
+               }
+               
+               if (parent) {
+                 language = (parent.className.match(lang) || [,''])[1];
+                 grammar = _.languages[language];
+               }
+           
+               if (!grammar) {
+                 return;
+               }
+               
+               // Set language on the element, if not present
+               element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+               
+               // Set language on the parent, for styling
+               parent = element.parentNode;
+               
+               if (/pre/i.test(parent.nodeName)) {
+                 parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
+               }
+           
+               var code = element.textContent;
+               
+               if(!code) {
+                 return;
+               }
+               
+               code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+               
+               var env = {
+                 element: element,
+                 language: language,
+                 grammar: grammar,
+                 code: code
+               };
+               
+               _.hooks.run('before-highlight', env);
+               
+               if (async && self.Worker) {
+                 var worker = new Worker(_.filename);	
+                 
+                 worker.onmessage = function(evt) {
+                   env.highlightedCode = Token.stringify(JSON.parse(evt.data), language);
+           
+                   _.hooks.run('before-insert', env);
+           
+                   env.element.innerHTML = env.highlightedCode;
+                   
+                   callback && callback.call(env.element);
+                   _.hooks.run('after-highlight', env);
+                 };
+                 
+                 worker.postMessage(JSON.stringify({
+                   language: env.language,
+                   code: env.code
+                 }));
+               }
+               else {
+                 env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
+           
+                 _.hooks.run('before-insert', env);
+           
+                 env.element.innerHTML = env.highlightedCode;
+                 
+                 callback && callback.call(element);
+                 
+                 _.hooks.run('after-highlight', env);
+               }
+             },
+             
+             highlight: function (text, grammar, language) {
+               return Token.stringify(_.tokenize(text, grammar), language);
+             },
+             
+             tokenize: function(text, grammar, language) {
+               var Token = _.Token;
+               
+               var strarr = [text];
+               
+               var rest = grammar.rest;
+               
+               if (rest) {
+                 for (var token in rest) {
+                   grammar[token] = rest[token];
+                 }
+                 
+                 delete grammar.rest;
+               }
+                           
+               tokenloop: for (var token in grammar) {
+                 if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+                   continue;
+                 }
+                 
+                 var pattern = grammar[token], 
+                   inside = pattern.inside,
+                   lookbehind = !!pattern.lookbehind,
+                   lookbehindLength = 0;
+                 
+                 pattern = pattern.pattern || pattern;
+                 
+                 for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+                   
+                   var str = strarr[i];
+                   
+                   if (strarr.length > text.length) {
+                     // Something went terribly wrong, ABORT, ABORT!
+                     break tokenloop;
+                   }
+                   
+                   if (str instanceof Token) {
+                     continue;
+                   }
+                   
+                   pattern.lastIndex = 0;
+                   
+                   var match = pattern.exec(str);
+                   
+                   if (match) {
+                     if(lookbehind) {
+                       lookbehindLength = match[1].length;
+                     }
+           
+                     var from = match.index - 1 + lookbehindLength,
+                         match = match[0].slice(lookbehindLength),
+                         len = match.length,
+                         to = from + len,
+                       before = str.slice(0, from + 1),
+                       after = str.slice(to + 1); 
+           
+                     var args = [i, 1];
+                     
+                     if (before) {
+                       args.push(before);
+                     }
+                     
+                     var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+                     
+                     args.push(wrapped);
+                     
+                     if (after) {
+                       args.push(after);
+                     }
+                     
+                     Array.prototype.splice.apply(strarr, args);
+                   }
+                 }
+               }
+           
+               return strarr;
+             },
+             
+             hooks: {
+               all: {},
+               
+               add: function (name, callback) {
+                 var hooks = _.hooks.all;
+                 
+                 hooks[name] = hooks[name] || [];
+                 
+                 hooks[name].push(callback);
+               },
+               
+               run: function (name, env) {
+                 var callbacks = _.hooks.all[name];
+                 
+                 if (!callbacks || !callbacks.length) {
+                   return;
+                 }
+                 
+                 for (var i=0, callback; callback = callbacks[i++];) {
+                   callback(env);
+                 }
+               }
+             }
+           };
+           
+           var Token = _.Token = function(type, content) {
+             this.type = type;
+             this.content = content;
+           };
+           
+           Token.stringify = function(o, language, parent) {
+             if (typeof o == 'string') {
+               return o;
+             }
+           
+             if (Object.prototype.toString.call(o) == '[object Array]') {
+               return o.map(function(element) {
+                 return Token.stringify(element, language, o);
+               }).join('');
+             }
+             
+             var env = {
+               type: o.type,
+               content: Token.stringify(o.content, language, parent),
+               tag: 'span',
+               classes: ['token', o.type],
+               attributes: {},
+               language: language,
+               parent: parent
+             };
+             
+             if (env.type == 'comment') {
+               env.attributes['spellcheck'] = 'true';
+             }
+             
+             _.hooks.run('wrap', env);
+             
+             var attributes = '';
+             
+             for (var name in env.attributes) {
+               attributes += name + '="' + (env.attributes[name] || '') + '"';
+             }
+             
+             return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
+             
+           };
+           
+           if (!self.document) {
+             // In worker
+             self.addEventListener('message', function(evt) {
+               var message = JSON.parse(evt.data),
+                   lang = message.language,
+                   code = message.code;
+               
+               self.postMessage(JSON.stringify(_.tokenize(code, _.languages[lang])));
+               self.close();
+             }, false);
+             
+             return;
+           }
+           
+           // Get current script and highlight
+           var script = document.getElementsByTagName('script');
+           
+           script = script[script.length - 1];
+           
+           if (script) {
+             _.filename = script.src;
+             
+             if (document.addEventListener && !script.hasAttribute('data-manual')) {
+               document.addEventListener('DOMContentLoaded', _.highlightAll);
+             }
+           }
+           
+           })();
+           
+           /* **********************************************
+                Begin prism-markup.js
+           ********************************************** */
+           
+           Prism.languages.markup = {
+             'comment': /&lt;!--[\w\W]*?-->/g,
+             'prolog': /&lt;\?.+?\?>/,
+             'doctype': /&lt;!DOCTYPE.+?>/,
+             'cdata': /&lt;!\[CDATA\[[\w\W]*?]]>/i,
+             'tag': {
+               pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?>/gi,
+               inside: {
+                 'tag': {
+                   pattern: /^&lt;\/?[\w:-]+/i,
+                   inside: {
+                     'punctuation': /^&lt;\/?/,
+                     'namespace': /^[\w-]+?:/
+                   }
+                 },
+                 'attr-value': {
+                   pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,
+                   inside: {
+                     'punctuation': /=|>|"/g
+                   }
+                 },
+                 'punctuation': /\/?>/g,
+                 'attr-name': {
+                   pattern: /[\w:-]+/g,
+                   inside: {
+                     'namespace': /^[\w-]+?:/
+                   }
+                 }
+                 
+               }
+             },
+             'entity': /&amp;#?[\da-z]{1,8};/gi
+           };
+           
+           // Plugin to make entity title show the real entity, idea by Roman Komarov
+           Prism.hooks.add('wrap', function(env) {
+           
+             if (env.type === 'entity') {
+               env.attributes['title'] = env.content.replace(/&amp;/, '&');
+             }
+           });
+           
+           /* **********************************************
+                Begin prism-css.js
+           ********************************************** */
+           
+           Prism.languages.css = {
+             'comment': /\/\*[\w\W]*?\*\//g,
+             'atrule': {
+               pattern: /@[\w-]+?.*?(;|(?=\s*{))/gi,
+               inside: {
+                 'punctuation': /[;:]/g
+               }
+             },
+             'url': /url\((["']?).*?\1\)/gi,
+             'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/g,
+             'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
+             'string': /("|')(\\?.)*?\1/g,
+             'important': /\B!important\b/gi,
+             'ignore': /&(lt|gt|amp);/gi,
+             'punctuation': /[\{\};:]/g
+           };
+           
+           if (Prism.languages.markup) {
+             Prism.languages.insertBefore('markup', 'tag', {
+               'style': {
+                 pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
+                 inside: {
+                   'tag': {
+                     pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
+                     inside: Prism.languages.markup.tag.inside
+                   },
+                   rest: Prism.languages.css
+                 }
+               }
+             });
+           }
+           
+           /* **********************************************
+                Begin prism-clike.js
+           ********************************************** */
+           
+           Prism.languages.clike = {
+             'comment': {
+               pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
+               lookbehind: true
+             },
+             'string': /("|')(\\?.)*?\1/g,
+             'class-name': {
+               pattern: /((?:class|interface|extends|implements|trait|instanceof|new)\s+)[a-z0-9_\.\\]+/ig,
+               lookbehind: true,
+               inside: {
+                 punctuation: /(\.|\\)/
+               }
+             },
+             'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
+             'boolean': /\b(true|false)\b/g,
+             'function': {
+               pattern: /[a-z0-9_]+\(/ig,
+               inside: {
+                 punctuation: /\(/
+               }
+             },
+             'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
+             'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
+             'ignore': /&(lt|gt|amp);/gi,
+             'punctuation': /[{}[\];(),.:]/g
+           };
+           
+           /* **********************************************
+                Begin prism-javascript.js
+           ********************************************** */
+           
+           Prism.languages.javascript = Prism.languages.extend('clike', {
+             'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+             'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?|NaN|-?Infinity)\b/g
+           });
+           
+           Prism.languages.insertBefore('javascript', 'keyword', {
+             'regex': {
+               pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
+               lookbehind: true
+             }
+           });
+           
+           if (Prism.languages.markup) {
+             Prism.languages.insertBefore('markup', 'tag', {
+               'script': {
+                 pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+                 inside: {
+                   'tag': {
+                     pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
+                     inside: Prism.languages.markup.tag.inside
+                   },
+                   rest: Prism.languages.javascript
+                 }
+               }
+             });
+           }
+           
+           /* **********************************************
+                Begin prism-file-highlight.js
+           ********************************************** */
+           
+           (function(){
+           
+           if (!self.Prism || !self.document || !document.querySelector) {
+             return;
+           }
+           
+           var Extensions = {
+             'js': 'javascript',
+             'html': 'markup',
+             'svg': 'markup'
+           };
+           
+           Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function(pre) {
+             var src = pre.getAttribute('data-src');
+             var extension = (src.match(/\.(\w+)$/) || [,''])[1];
+             var language = Extensions[extension] || extension;
+             
+             var code = document.createElement('code');
+             code.className = 'language-' + language;
+             
+             pre.textContent = '';
+             
+             code.textContent = 'Loading…';
+             
+             pre.appendChild(code);
+             
+             var xhr = new XMLHttpRequest();
+             
+             xhr.open('GET', src, true);
+           
+             xhr.onreadystatechange = function() {
+               if (xhr.readyState == 4) {
+                 
+                 if (xhr.status < 400 && xhr.responseText) {
+                   code.textContent = xhr.responseText;
+                 
+                   Prism.highlightElement(code);
+                 }
+                 else if (xhr.status >= 400) {
+                   code.textContent = '? Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                 }
+                 else {
+                   code.textContent = '? Error: File does not exist or is empty';
+                 }
+               }
+             };
+             
+             xhr.send(null);
+           });
+           
+           })();
+    </script>
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/modernizr-latest.js"></script>
+    <script src="mlb-toggleswitch.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#toggleswitch-1 select').toggleswitch({ 'bSwitchState' : false });
+            $('#toggleswitch-2 select').toggleswitch({ 'bSwitchEnabled' : false });
+            $('#toggleswitch-3 select').toggleswitch({ 'bDisplayText' : true });
+            $('#toggleswitch-4 select').toggleswitch({ 'bDisplayText' : true , 'asDisplayText' : ['Nay' , 'Yay'] });
+            $('#toggleswitch-5 select').toggleswitch({ 'bAnimate' : false });
+            $('#toggleswitch-6 select').toggleswitch();
+            $('#toggleswitch-6 select').on('toggleswitchchange' , function(){ alert('Do stuff'); });
+        });
+    </script>
+
+</body>
+</html>
