@@ -1,3 +1,4 @@
-Convert your lame 'select' tags into toggle switches!
-
-For examples and API documentation, see http://cornally.github.io/toggleswitch/
+MLB Toggleswitch
+----------------
+[Full documentation, examples and API](http://cornally.github.io/toggleswitch/ "MLB Toggleswitch")<br>
+![Alt text](/img/toggleswitch-demo.gif)
