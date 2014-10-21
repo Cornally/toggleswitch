@@ -52,7 +52,7 @@
     overflow: hidden;
     text-align: center;
     font-size: 10px;
-    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.5); }
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.15); }
   .toggleswitch-container.toggleswitch-state-on {
     background: #2b7b36;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#349441), color-stop(100%, #2b7b36));
