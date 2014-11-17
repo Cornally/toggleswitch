@@ -205,7 +205,7 @@ function toggleSwitchPointer(event) {
                         //console.log('currentPositionX: '+ currentPosition[4] + ' startPosition: ' + startPosition + ' dragOffset: ' + dragOffset + ' dragPosition: ' + dragPosition);
                         
                         // Update position during drag
-                        $('.toggleswitch-switch' , this).css( 'transform' , 'translate3d(' + dragPosition + 'px, 0, 0)' );
+                        $('.toggleswitch-switch' , this).css( transform , 'translate3d(' + dragPosition + 'px, 0, 0)' );
                         
                     });
                 
