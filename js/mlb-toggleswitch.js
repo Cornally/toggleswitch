@@ -154,7 +154,7 @@ function toggleSwitchPointer(event) {
                     var startPosition = (Modernizr.touch) ? e.originalEvent.changedTouches[0].clientX : e.pageX;
                     
                     // Starting translate3d X value of switch
-                    var currentPosition = toggleSwitchMatrixToArray( $('.toggleswitch-switch' , this).css( 'transform' ) );
+                    var currentPosition = toggleSwitchMatrixToArray( $('.toggleswitch-switch' , this).css('transform') );
                     
                     // Offset position of pointer X
                     var dragOffset;
