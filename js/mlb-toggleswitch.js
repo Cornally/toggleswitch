@@ -71,7 +71,7 @@ function toggleSwitchPointer(event) {
             // Hide original <select> and apply a special class that can be
             // used to omit toggle switches from other jQuery plugin bindings,
             // like select2.  Wrap new contents in a class.
-            element.hide().addClass('toggleswitch-select').wrap( '<div class="toggleswitch-container">' );
+            element.hide().addClass('toggleswitch-select').wrap('<div class="toggleswitch-container">');
 
             // Build the fun stuff
             var newToggleContainer = element.parent();
@@ -113,7 +113,7 @@ function toggleSwitchPointer(event) {
             // Set switch to enabled or disabled
             // true = "enabled"
             // false = "disabled"
-            if ( this.options.bSwitchEnabled ) {
+            if (this.options.bSwitchEnabled) {
                 
                 element.attr('disabled' , false);
                 this._enableListeners(newToggleContainer);
@@ -127,7 +127,7 @@ function toggleSwitchPointer(event) {
             }
             
             // Set animation of toggle switch on or off.  Useful for progressive enhancement/degredation
-            if ( this.options.bAnimate && Modernizr.csstransforms3d ) {
+            if (this.options.bAnimate && Modernizr.csstransforms3d) {
                 
                 prefix  = this._prefix();
                 transform = prefix + 'transform';
@@ -148,13 +148,13 @@ function toggleSwitchPointer(event) {
           // One binding kicks off / binds "mousedown", "mouseup" and "mousemove" actions
             $(toggleswitch).on(toggleSwitchPointer('down') , function(e){
                 
-                if ( $(e.target).closest('.toggleswitch-container').hasClass('toggleswitch-animate') ) {
+                if ( $(e.target).closest('.toggleswitch-container').hasClass('toggleswitch-animate')) {
                 
                     // Starting position of pointer X
                     var startPosition = (Modernizr.touch) ? e.originalEvent.changedTouches[0].clientX : e.pageX;
                     
                     // Starting translate3d X value of switch
-                    var currentPosition = toggleSwitchMatrixToArray( $('.toggleswitch-switch' , this).css( 'transform' ) );
+                    var currentPosition = toggleSwitchMatrixToArray($('.toggleswitch-switch', this).css(transform));
                     
                     // Offset position of pointer X
                     var dragOffset;
@@ -205,7 +205,7 @@ function toggleSwitchPointer(event) {
                         //console.log('currentPositionX: '+ currentPosition[4] + ' startPosition: ' + startPosition + ' dragOffset: ' + dragOffset + ' dragPosition: ' + dragPosition);
                         
                         // Update position during drag
-                        $('.toggleswitch-switch' , this).css( transform , 'translate3d(' + dragPosition + 'px, 0, 0)' );
+                        $('.toggleswitch-switch' , this).css(transform , 'translate3d(' + dragPosition + 'px, 0, 0)');
                         
                     });
                 
@@ -230,7 +230,7 @@ function toggleSwitchPointer(event) {
                 
                     // Remove inline styles applied during drag
                     if ( activeSwitch.hasClass('toggleswitch-animate') ) {
-                        $('.toggleswitch-switch' , activeSwitch).css( transform , '' );    
+                        $('.toggleswitch-switch' , activeSwitch).css(transform , '');    
                     }
                     
                     // Update the switch's state via our options to trigger the
@@ -275,7 +275,7 @@ function toggleSwitchPointer(event) {
         _disableListeners: function( toggleswitch ) {
 
             $(toggleswitch).off(toggleSwitchPointer('down'));
-            $(toggleswitch).off(toggleSwitchPointer('move') , '.toggleswitch-switch');
+            $(toggleswitch).off(toggleSwitchPointer('move'), '.toggleswitch-switch');
             $(document).off(toggleSwitchPointer('up'));
 
         },
@@ -344,7 +344,7 @@ function toggleSwitchPointer(event) {
                 
                 // Remove inline styles applied during drag
                 if ( $('.toggleswitch-switch' , toggleContainer).hasClass('toggleswitch-animate') ) {
-                    $('.toggleswitch-switch' , toggleContainer).css( transform , '' );    
+                    $('.toggleswitch-switch' , toggleContainer).css(transform , '');    
                 }
                 
                 // Fire event if current value changes
